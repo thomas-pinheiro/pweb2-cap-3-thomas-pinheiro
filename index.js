@@ -15,13 +15,9 @@ import http from 'node:http';
 const PORT = process.env.PORT || 3000;
 
 const server = http.createServer((req, res) => {
-    if (req.method === "GET" && req.url === "/") {
-        res.statusCode = 200;
-        res.setHeader('Content-Type', 'text/html');
-        res.end('Olá, Mundo!');
-        return;
-    }
-
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/html');
+    res.end('Olá, Mundo!');
 });
 
 server.listen(PORT, () => console.log(`Servidor em http://localhost:${PORT}`));
