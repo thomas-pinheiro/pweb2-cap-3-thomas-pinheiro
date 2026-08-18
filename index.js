@@ -22,6 +22,15 @@ const server = http.createServer((req, res) => {
         return;
     }
 
+    if (req.method === "GET" && req.url.split('/')[1] === "saudacao") {
+        const nome = req.url.split('/')[2];
+        if (nome) {
+            res.writeHead(200, { "Content-Type": "text/html" });
+            res.end(`Olá, ${nome}!`);
+            return;
+        }
+    }
+
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/html');
     res.end('Olá, Mundo!');
