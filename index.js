@@ -28,6 +28,10 @@ const server = http.createServer((req, res) => {
             res.end(`Olá, ${urlParts[2]}!`);
             return;
         }
+    } else {
+        res.writeHead(404);
+        res.end("Recurso não encontrado.")
+        return;
     }
 
     res.statusCode = 200;
