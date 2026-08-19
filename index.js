@@ -16,8 +16,13 @@ const PORT = process.env.PORT || 3000;
 
 const server = http.createServer((req, res) => {
     const urlParts = req.url.split('/');
-
-    if (req.method === "GET" && req.url === "/sobre") {
+    if (req.method === "GET" && req.url === "/") {
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'text/html');
+        res.end('Olá, Mundo!');
+        return;
+    }
+    else if (req.method === "GET" && req.url === "/sobre") {
         res.writeHead(200, { "Content-Type": "text/html" });
         res.end('<h1>Sobre</h1>');
         return;
@@ -33,10 +38,6 @@ const server = http.createServer((req, res) => {
         res.end("Recurso não encontrado.")
         return;
     }
-
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/html');
-    res.end('Olá, Mundo!');
 });
 
 server.listen(PORT, () => console.log(`Servidor em http://localhost:${PORT}`));
