@@ -15,18 +15,17 @@ import http from 'node:http';
 const PORT = process.env.PORT || 3000;
 
 const server = http.createServer((req, res) => {
+    const urlParts = req.url.split('/');
 
     if (req.method === "GET" && req.url === "/sobre") {
         res.writeHead(200, { "Content-Type": "text/html" });
         res.end('<h1>Sobre</h1>');
         return;
     }
-
-    if (req.method === "GET" && req.url.split('/')[1] === "saudacao") {
-        const nome = req.url.split('/')[2];
-        if (nome) {
+    else if (req.method === "GET" && req.url.split('/')[1] === "saudacao") {
+        if (urlParts[2]) {
             res.writeHead(200, { "Content-Type": "text/html" });
-            res.end(`Olá, ${nome}!`);
+            res.end(`Olá, ${urlParts[2]}!`);
             return;
         }
     }
